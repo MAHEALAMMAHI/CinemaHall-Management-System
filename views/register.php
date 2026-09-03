@@ -4,23 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Registration - Cineverse</title>
-
     <link rel="stylesheet" href="css/auth.css">
 </head>
 
 <body>
-
-    <div class="left-section">
-    </div>
-
+    <div class="left-section"></div>
     <div class="right-section">
-
         <div class="form-container">
-
             <h1>Registration</h1>
-
             <form action="../controllers/registerController.php" method="post">
 
                 <label for="name">Name</label>
@@ -34,9 +26,8 @@
                     ?>
                 </span>
 
-
                 <label for="email">Email</label>
-                <input type="text" name="email" id="email">
+                <input type="email" name="email" id="email">
 
                 <span class="error">
                     <?php
@@ -46,18 +37,11 @@
                     ?>
                 </span>
 
-
                 <label for="phone">Phone</label>
-
                 <div class="phone-input">
-
                     <span class="country-code">+88</span>
 
-                    <input type="text"
-                        name="phone"
-                        id="phone"
-                        placeholder="01XXXXXXXXX">
-
+                    <input type="text" name="phone" id="phone" placeholder="01XXXXXXXXX">
                 </div>
 
                 <span class="error">
@@ -68,26 +52,13 @@
                     ?>
                 </span>
 
-
                 <label>Gender</label>
-
                 <div class="gender-container">
-
-                    <input type="radio"
-                        name="gender"
-                        id="male"
-                        value="male">
-
+                    <input type="radio" name="gender" value="male" id="male">
                     <label for="male" class="gender-label">Male</label>
 
-
-                    <input type="radio"
-                        name="gender"
-                        id="female"
-                        value="female">
-
+                    <input type="radio" name="gender" value="female" id="female">
                     <label for="female" class="gender-label">Female</label>
-
                 </div>
 
                 <span class="error">
@@ -98,11 +69,8 @@
                     ?>
                 </span>
 
-
                 <label for="password">Password</label>
-                <input type="password"
-                    name="password"
-                    id="password">
+                <input type="password" name="password" id="password">
 
                 <span class="error">
                     <?php
@@ -112,12 +80,8 @@
                     ?>
                 </span>
 
-
                 <label for="confirmPassword">Confirm Password</label>
-
-                <input type="password"
-                    name="confirmPassword"
-                    id="confirmPassword">
+                <input type="password" name="confirmPassword" id="confirmPassword">
 
                 <span class="error">
                     <?php
@@ -127,26 +91,15 @@
                     ?>
                 </span>
 
-
-                <input type="submit"
-                    name="register"
-                    value="Register">
-
+                <input type="submit" name="register" value="Register">
 
                 <div class="login-link">
-
                     <span>Already have an account?</span>
-
                     <a href="login.php">Login here</a>
-
                 </div>
-
             </form>
-
         </div>
-
     </div>
-
 </body>
 
 </html>
