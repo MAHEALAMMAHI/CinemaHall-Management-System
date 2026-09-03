@@ -49,6 +49,7 @@ label{
 }
 
 input[type="text"],
+input[type="email"],
 input[type="password"]{
     width: 300px;
     padding: 10px;
@@ -59,8 +60,13 @@ input[type="password"]{
 }
 
 input[type="text"]:focus,
+input[type="email"]:focus,
 input[type="password"]:focus{
     outline: 2px solid #e50914;
+}
+
+#email{
+    width: 300px;
 }
 
 .phone-input{
@@ -77,7 +83,7 @@ input[type="password"]:focus{
 }
 
 .phone-input input{
-    width: 290px;
+    width: 240px;
 }
 
 .gender-container{
