@@ -1,0 +1,138 @@
+*{
+    font-family: arial, sans-serif;
+}
+
+body{
+    margin: 0;
+    display: flex;
+}
+
+.left-section{
+    width: 50vw;
+    height: 100vh;
+
+    background-image: url("../images/cinema-bg.jpeg");
+    background-size: cover;
+}
+
+.right-section{
+    width: 50vw;
+    height: 100vh;
+
+    background-color: #f4f4f4;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container{
+    width: 380px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.form-container h1{
+    text-align: center;
+    color: #222222;
+    margin-top: 0px;
+    margin-bottom: 25px;
+}
+
+label{
+    display: block;
+    color: #333333;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="password"]{
+    width: 300px;
+    padding: 10px;
+
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus{
+    outline: 2px solid #e50914;
+}
+
+.phone-input{
+    display: flex;
+}
+
+.country-code{
+    background-color:#f1f1f1;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right: 8px;
+    color:#555555;
+}
+
+.phone-input input{
+    width: 290px;
+}
+
+.gender-container{
+    display: flex;
+    align-items: center;
+
+    margin-top: 5px;
+}
+
+.gender-container input{
+    margin-right: 5px;
+}
+
+.gender-label{
+    display: inline;
+    font-weight: normal;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 12px;
+}
+
+.error{
+    display: block;
+    color: red;
+    font-size: 13px;
+    height: 14px;
+    margin-top: 3px;
+}
+
+input[type="submit"]{
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #e50914;
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover{
+    background-color: #b20710;
+}
+
+.login-link{
+    text-align: center;
+    margin-top: 20px;
+    color: #666666;
+    font-size: 14px;
+}
+
+.login-link a{
+    color: #e50914;
+    font-weight: bold;
+}
+
+
