@@ -1,0 +1,149 @@
+*{
+    font-family: Arial, sans-serif;
+}
+
+body{
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+/*navigation bars*/
+.navbar{
+    height: 85px;
+    background-color: #222222;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.logo{
+    color: #e50914;
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.nav-links{
+    display: flex;
+}
+
+.nav-links a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.nav-links a:hover{
+    color: #e50914;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+}
+
+.profile-icon{
+    width: 30px;
+    height: 30px;
+
+    border: 2px solid white;
+    border-radius: 50%;
+
+    margin-left: 30px;
+
+}
+
+/*movies*/
+
+.movie-section{
+    padding-top: 25px;
+    padding-bottom: 50px;
+}
+
+.movie-section h1{
+    text-align: center;
+    color: #e50914;
+    
+    font-size: 28px;
+    font-weight: normal;
+
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+.movie-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-bottom: 55px;
+}
+
+.movie{
+    background-color: white;
+    padding: 12px;
+
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+}
+
+.movie img {
+    width: 180px;
+    height: 270px;
+
+    display: block;
+}
+
+/*footer*/
+
+.footer{
+    background-color: #222222;
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+
+    padding: 35px 40px;
+    
+}
+
+
+.footer-left h1,
+.footer-right h1{
+    color: #e50914;
+    font-size: 30px;
+    font-weight: normal;
+
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.footer-left p,
+.footer-right p{
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.footer-right{
+    margin-right: 50px;
+}
+
+.live-dot{
+    display: inline-block;
+
+    width: 15px;
+    height: 15px;
+
+    background-color: #e50914;
+
+    border-radius: 50%;
+    margin-right: 8px;
+}
