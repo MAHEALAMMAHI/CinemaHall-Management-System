@@ -49,15 +49,21 @@
         <div class="movie-container">
 
             <div class="movie">
+                <a href="booking.php?movie=spiderman">
                 <img src="images/spiderman.jpeg" alt="Spider-Man">
+                </a>
             </div>
 
             <div class="movie">
+                <a href="booking.php?movie=frozen">
                 <img src="images/frozen.jpeg" alt="Frozen">
+                </a>
             </div>
 
             <div class="movie">
+                <a href="booking.php?movie=batman">
                 <img src="images/batman.jpeg" alt="The Batman">
+                </a>
             </div>
 
         </div>
