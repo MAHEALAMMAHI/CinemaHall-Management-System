@@ -27,6 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         header("Location: $url");
     } else {
-        echo "Login successful!";
+        header("location: ../views/home.php");
     }
 }
