@@ -1,4 +1,8 @@
 <?php
+
+session_start();
+require_once "../models/customerModel.php";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"]);
     $password = $_POST["password"];
@@ -26,7 +30,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             . "&passwordErr=" . urlencode($passwordErr);
 
         header("Location: $url");
+        exit();
     } else {
-        header("location: ../views/home.php");
+        $customer = loginCustomer($email, $password);
+
+        if ($customer) {
+            $_SESSION["customer_id"] = $customer["customer_id"];
+            $_SESSION["customer_name"] = $customer["customer_name"];
+            $_SESSION["customer_email"] = $customer["customer_email"];
+            $_SESSION["role"] = "customer";
+
+            header("location: ../views/home.php");
+            exit();
+        } else {
+            $passwordErr = "Invalid email or password";
+
+            $url = "../views/login.php?passwordErr="
+                . urlencode($passwordErr);
+
+            header("Location: $url");
+            exit();
+        }
     }
 }
+?>

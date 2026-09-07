@@ -1,4 +1,6 @@
 <?php
+require_once "../models/customerModel.php";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST["name"]);
     $email = trim($_POST["email"]);
@@ -71,8 +73,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: $url");
         exit();
     } else {
-        header("Location: ../views/login.php");
-        exit();
+        $result = registerCustomer(
+            $name,
+            $email,
+            $phone,
+            $gender,
+            $password,
+        );
+
+        if ($result) {
+            header("Location: ../views/login.php");
+            exit();
+        } else {
+            echo "Registration failed";
+        }
     }
 }
 ?>
