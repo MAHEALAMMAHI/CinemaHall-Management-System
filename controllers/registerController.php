@@ -69,8 +69,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             . "&confirmPasswordErr=" . urlencode($confirmPasswordErr);
 
         header("Location: $url");
+        exit();
     } else {
-        echo "Registration successful!";
+        header("Location: ../views/login.php");
+        exit();
     }
 }
 ?>
