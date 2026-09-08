@@ -19,7 +19,7 @@ body {
 .content-wrapper {
     width: 100%;
     height: 100vh;
-    background-image: url("background.jpeg");
+    background-image: url("../images/cinema-bg.jpeg");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
