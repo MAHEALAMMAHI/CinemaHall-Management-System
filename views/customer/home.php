@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION["customer_id"])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - CineVerse</title>
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="../css/home.css">
 </head>
 
 <body>
@@ -19,7 +30,7 @@
             <a href="#contact">Contact</a>
         </div>
         <div class="user">
-            <span>Sadat Ishraq</span>
+            <span><?php echo $_SESSION["customer_name"]; ?></span>
             <span class="profile-icon"></span>
         </div>
     </div>
@@ -30,15 +41,15 @@
         <div class="movie-container">
 
             <div class="movie">
-                <img src="images/little-mermaid.jpeg" alt="The Little Mermaid">
+                <img src="../images/little-mermaid.jpeg" alt="The Little Mermaid">
             </div>
 
             <div class="movie">
-                <img src="images/avengers.jpeg" alt="Avengers">
+                <img src="../images/avengers.jpeg" alt="Avengers">
             </div>
 
             <div class="movie">
-                <img src="images/thor.jpeg" alt="Thor">
+                <img src="../images/thor.jpeg" alt="Thor">
             </div>
 
         </div>
@@ -50,19 +61,19 @@
 
             <div class="movie">
                 <a href="booking.php?movie=spiderman">
-                <img src="images/spiderman.jpeg" alt="Spider-Man">
+                <img src="../images/spiderman.jpeg" alt="Spider-Man">
                 </a>
             </div>
 
             <div class="movie">
                 <a href="booking.php?movie=frozen">
-                <img src="images/frozen.jpeg" alt="Frozen">
+                <img src="../images/frozen.jpeg" alt="Frozen">
                 </a>
             </div>
 
             <div class="movie">
                 <a href="booking.php?movie=batman">
-                <img src="images/batman.jpeg" alt="The Batman">
+                <img src="../images/batman.jpeg" alt="The Batman">
                 </a>
             </div>
 

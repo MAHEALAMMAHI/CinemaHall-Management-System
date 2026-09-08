@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if(!isset($_SESSION["customer_id"])){
+    header("Location: ../login.php");
+    exit();
+}
+
 $movie = $_GET["movie"] ?? "";
 
 $title = "";
@@ -33,8 +40,8 @@ if ($movie == "batman") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Ticket - CineVerse</title>
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/booking.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/booking.css">
 </head>
 
 <body>
@@ -48,7 +55,7 @@ if ($movie == "batman") {
         </div>
 
         <div class="user">
-            <span>Sadat Ishraq</span>
+            <span><?php echo $_SESSION["customer_name"]; ?></span>
             <span class="profile-icon"></span>
         </div>
 
@@ -56,14 +63,14 @@ if ($movie == "batman") {
 
     <div class="booking-section">
         <div class="movie-details">
-            <img src="images/<?php echo $image; ?>" alt="<?php echo $title; ?>">
-            <h1>><?php echo $title; ?></h1>
+            <img src="../images/<?php echo $image; ?>" alt="<?php echo $title; ?>">
+            <h1><?php echo $title; ?></h1>
             <p>Ticket: <?php echo $ticket; ?></p>
             <p>Hall: <?php echo $hall; ?></p>
         </div>
 
         <div class="booking-options">
-            <form action="../controllers/bookingController.php" method="post">
+            <form action="../../controllers/bookingController.php" method="post">
                 <input type="hidden" name="movie" value="<?php echo $movie; ?>">
 
                 <h1>Showtime</h1>
@@ -74,7 +81,7 @@ if ($movie == "batman") {
                     </div>
 
                     <div class="showtime">
-                        <input type="radio" name="showtime" value="3pm-5.30pm" id="show2">
+                        <input type="radio" name="showtime" value="8pm-5.30pm" id="show2">
                         <label for="show2">8 p.m - 10:30 p.m</label>
                     </div>
                 </div>

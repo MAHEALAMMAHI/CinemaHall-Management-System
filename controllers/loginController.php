@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["customer_email"] = $customer["customer_email"];
             $_SESSION["role"] = "customer";
 
-            header("location: ../views/home.php");
+            header("Location: ../views/customer/home.php");
             exit();
         } else {
             $passwordErr = "Invalid email or password";
