@@ -36,7 +36,7 @@ $seats = getSeatsByHallId(1);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Ticket - CineVerse</title>
     <link rel="stylesheet" href="../css/home.css?v=2">
-    <link rel="stylesheet" href="../css/booking.css">
+    <link rel="stylesheet" href="../css/booking.css?v=2">
 </head>
 
 <body>
