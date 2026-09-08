@@ -16,7 +16,7 @@ if (!isset($_SESSION["customer_id"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - CineVerse</title>
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/home.css?v=2">
 </head>
 
 <body>
@@ -30,18 +30,17 @@ if (!isset($_SESSION["customer_id"])) {
             <a href="#contact">Contact</a>
         </div>
         <div class="user">
+
             <a href="profile.php">
                 <?php echo $_SESSION["customer_name"]; ?>
             </a>
-            <a href="profile.php">
-                <span class="profile-icon"></span>
-            </a>
 
             <span class="separator">||</span>
-            
-            <a href="../logout.php" class="logout-link">
+
+            <a href="../logout.php">
                 Logout
             </a>
+
         </div>
     </div>
 

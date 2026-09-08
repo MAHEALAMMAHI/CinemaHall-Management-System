@@ -40,7 +40,7 @@ if ($movie == "batman") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Ticket - CineVerse</title>
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/home.css?v=2">
     <link rel="stylesheet" href="../css/booking.css">
 </head>
 
@@ -55,17 +55,18 @@ if ($movie == "batman") {
         </div>
 
         <div class="user">
+
             <a href="profile.php">
                 <?php echo $_SESSION["customer_name"]; ?>
             </a>
 
             <span class="separator">||</span>
-            
-            <a href="profile.php">
-                <span class="profile-icon"></span>
-            </a>
-        </div>
 
+            <a href="../logout.php">
+                Logout
+            </a>
+
+        </div>
     </div>
 
     <div class="booking-section">
