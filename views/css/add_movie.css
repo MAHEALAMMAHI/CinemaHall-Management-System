@@ -54,7 +54,7 @@ body{
 
 .user a{
     color:white;
-    text-align: none;
+    text-decoration: none;
     font-size: 18px;
 }
 
@@ -169,4 +169,11 @@ body{
 
 .footer-right{
     margin-right: 50px;
+}
+
+.success{
+    color: green;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
 }

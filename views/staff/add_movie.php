@@ -10,7 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Movies - CineVerse</title>
 
-    <link rel="stylesheet" href="../css/add_movie.css?v=2">
+    <link rel="stylesheet" href="../css/add_movie.css?v=3">
 </head>
 
 <body>
@@ -20,7 +20,7 @@ session_start();
         </div>
 
         <div class="nav-links">
-            
+
             <a href="add_movie.php">
                 Add Movie
             </a>
@@ -40,6 +40,11 @@ session_start();
     <div class="main-content">
         <div class="movie-form-container">
             <h1>Add Movie</h1>
+            <?php
+            if (isset($_GET["success"])) {
+                echo "<p class='success'>" . $_GET["success"] . "</p>";
+            }
+            ?>
             <form action="../../controllers/movieController.php" method="post" enctype="multipart/form-data">
 
                 <label for="movieName">Movie Name</label>
