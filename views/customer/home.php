@@ -72,7 +72,13 @@ $upcoming = getMoviesByStatus("Upcoming");
             while ($movie = mysqli_fetch_assoc($nowShowing)) {
 
                 echo "<div class='movie'>";
+
+                echo "<a href='booking.php?movie_id=" . $movie["movie_id"] . "'>";
+
                 echo "<img src='../images/" . $movie["thumbnail"] . "' alt='" . $movie["movie_name"] . "'>";
+
+                echo "</a>";
+
                 echo "</div>";
             }
             ?>
