@@ -30,8 +30,12 @@ if (!isset($_SESSION["customer_id"])) {
             <a href="#contact">Contact</a>
         </div>
         <div class="user">
-            <span><?php echo $_SESSION["customer_name"]; ?></span>
-            <span class="profile-icon"></span>
+            <a href="profile.php">
+                <?php echo $_SESSION["customer_name"]; ?>
+            </a>
+            <a href="profile.php">
+                <span class="profile-icon"></span>
+            </a>
         </div>
     </div>
 
@@ -61,19 +65,19 @@ if (!isset($_SESSION["customer_id"])) {
 
             <div class="movie">
                 <a href="booking.php?movie=spiderman">
-                <img src="../images/spiderman.jpeg" alt="Spider-Man">
+                    <img src="../images/spiderman.jpeg" alt="Spider-Man">
                 </a>
             </div>
 
             <div class="movie">
                 <a href="booking.php?movie=frozen">
-                <img src="../images/frozen.jpeg" alt="Frozen">
+                    <img src="../images/frozen.jpeg" alt="Frozen">
                 </a>
             </div>
 
             <div class="movie">
                 <a href="booking.php?movie=batman">
-                <img src="../images/batman.jpeg" alt="The Batman">
+                    <img src="../images/batman.jpeg" alt="The Batman">
                 </a>
             </div>
 

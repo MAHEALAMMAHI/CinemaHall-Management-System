@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["customer_id"])){
+if (!isset($_SESSION["customer_id"])) {
     header("Location: ../login.php");
     exit();
 }
@@ -55,8 +55,12 @@ if ($movie == "batman") {
         </div>
 
         <div class="user">
-            <span><?php echo $_SESSION["customer_name"]; ?></span>
-            <span class="profile-icon"></span>
+            <a href="profile.php">
+                <?php echo $_SESSION["customer_name"]; ?>
+            </a>
+            <a href="profile.php">
+                <span class="profile-icon"></span>
+            </a>
         </div>
 
     </div>
