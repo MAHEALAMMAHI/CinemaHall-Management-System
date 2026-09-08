@@ -18,7 +18,8 @@ function addMovie($movieName, $duration, $thumbnail, $status)
     }
 }
 
-function getMoviesByStatus($status){
+function getMoviesByStatus($status)
+{
     global $conn;
 
     $sql = "SELECT * FROM movie WHERE movie_status = ?";
@@ -32,4 +33,24 @@ function getMoviesByStatus($status){
     $result = mysqli_stmt_get_result($stmt);
 
     return $result;
+}
+function getMoviesById($movieId)
+{
+    global $conn;
+
+    $sql = "SELECT * FROM movie WHERE movie_id = ?";
+
+    $stmt = mysqli_prepare($conn, $sql);
+
+    mysqli_stmt_bind_param($stmt, "i", $movieId);
+
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+
+    if (mysqli_num_rows($result) == 1) {
+        return mysqli_fetch_assoc($result);
+    } else {
+        return false;
+    }
 }

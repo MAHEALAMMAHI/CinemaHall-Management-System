@@ -1,35 +1,25 @@
 <?php
 session_start();
 
+require_once "../../models/movieModel.php";
+
 if (!isset($_SESSION["customer_id"])) {
     header("Location: ../login.php");
     exit();
 }
 
-$movie = $_GET["movie"] ?? "";
+$movieId = $_GET["movie_id"] ?? "";
 
-$title = "";
-$image = "";
-$ticket = "";
-$hall = "";
+if ($movieId == "") {
+    header("Location: movies.php");
+    exit();
+}
 
-if ($movie == "spiderman") {
-    $title = "SPIDER-MAN BRAND NEW DAY";
-    $image = "spiderman.jpeg";
-    $ticket = "10$";
-    $hall = "01";
-}
-if ($movie == "frozen") {
-    $title = "FROZEN";
-    $image = "frozen.jpeg";
-    $ticket = "10$";
-    $hall = "02";
-}
-if ($movie == "batman") {
-    $title = "THE BATMAN";
-    $image = "batman.jpeg";
-    $ticket = "10$";
-    $hall = "03";
+$movie = getMovieById($movieId);
+
+if (!$movie) {
+    header("Location: movies.php");
+    exit();
 }
 ?>
 
