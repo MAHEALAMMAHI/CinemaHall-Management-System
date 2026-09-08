@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     if ($hasError) {
-        $url = "../views/customer/profile.php?edit=1"
+        $url = "../views/customer/updateProfile.php"
             . "&nameErr=" . urlencode($nameErr)
             . "&emailErr=" . urlencode($emailErr)
             . "&phoneErr=" . urlencode($phoneErr)
