@@ -36,6 +36,12 @@ if (!isset($_SESSION["customer_id"])) {
             <a href="profile.php">
                 <span class="profile-icon"></span>
             </a>
+
+            <span class="separator">||</span>
+            
+            <a href="../logout.php" class="logout-link">
+                Logout
+            </a>
         </div>
     </div>
 

@@ -58,6 +58,9 @@ if ($movie == "batman") {
             <a href="profile.php">
                 <?php echo $_SESSION["customer_name"]; ?>
             </a>
+
+            <span class="separator">||</span>
+            
             <a href="profile.php">
                 <span class="profile-icon"></span>
             </a>
