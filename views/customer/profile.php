@@ -22,7 +22,7 @@ $edit = $_GET["edit"] ?? "";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile - CineVerse</title>
 
-    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/profile.css?v=2">
 </head>
 
 <body>
