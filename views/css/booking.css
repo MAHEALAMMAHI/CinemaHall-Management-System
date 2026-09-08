@@ -72,6 +72,9 @@
 
 .seat-row{
     display: flex;
+    flex-wrap: wrap;
+
+    width: 360px;
     margin-bottom: 20px;
 }
 

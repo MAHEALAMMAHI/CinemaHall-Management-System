@@ -2,6 +2,7 @@
 session_start();
 
 require_once "../../models/movieModel.php";
+require_once "../../models/bookingModel.php";
 
 if (!isset($_SESSION["customer_id"])) {
     header("Location: ../login.php");
@@ -21,6 +22,10 @@ if (!$movie) {
     header("Location: movies.php");
     exit();
 }
+$shows = getShowsByMovieId($movieId);
+$seats = getSeatsByHallId(1);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -79,87 +84,45 @@ if (!$movie) {
 
                 <h1>Showtime</h1>
                 <div class="showtime-container">
-                    <div class="showtime">
-                        <input type="radio" name="showtime" value="3pm-5.30pm" id="show1">
-                        <label for="show1">3 p.m - 5:30 p.m</label>
-                    </div>
 
-                    <div class="showtime">
-                        <input type="radio" name="showtime" value="8pm-10.30pm" id="show2">
-                        <label for="show2">8 p.m - 10:30 p.m</label>
-                    </div>
+                    <?php
+                    while ($show = mysqli_fetch_assoc($shows)) {
+
+                        echo "<div class='showtime'>";
+
+                        echo "<input type='radio' name='show_id' value='" . $show["show_id"] . "'>";
+
+                        echo "<label>";
+                        echo $show["show_time"] . " - $" . $show["ticket_price"];
+                        echo "</label>";
+
+                        echo "</div>";
+                    }
+                    ?>
+
                 </div>
 
                 <h1>Seat</h1>
-                <div class="seat-row">
-                    <div class="seat">
-                        <input type="checkbox" name="seats[]" value="A1" id="A1">
-                        <label for="A1">A1</label>
-                    </div>
-
-                    <div class="seat">
-                        <input type="checkbox" name="seats[]" value="A2" id="A2">
-                        <label for="A2">A2</label>
-                    </div>
-
-                    <div class="seat">
-                        <input type="checkbox" name="seats[]" value="A3" id="A3">
-                        <label for="A3">A3</label>
-                    </div>
-
-                    <div class="seat">
-                        <input type="checkbox" name="seats[]" value="A4" id="A4">
-                        <label for="A4">A4</label>
-                    </div>
-                </div>
-
-
 
                 <div class="seat-row">
-                    <div class="seat">
-                        <input type="checkbox" name="seats[]" value="B1" id="B1">
-                        <label for="B1">B1</label>
-                    </div>
 
-                    <div class="seat">
-                        <input type="checkbox" name="seats[]" value="B2" id="B2">
-                        <label for="B2">B2</label>
-                    </div>
+                    <?php
 
-                    <div class="seat">
-                        <input type="checkbox" name="seats[]" value="B3" id="B3">
-                        <label for="B3">B3</label>
-                    </div>
+                    while ($seat = mysqli_fetch_assoc($seats)) {
 
-                    <div class="seat">
-                        <input type="checkbox" name="seats[]" value="B4" id="B4">
-                        <label for="B4">B4</label>
-                    </div>
-                </div>
+                        echo "<div class='seat'>";
 
+                        echo "<input type='checkbox' name='seats[]' value='" . $seat["seat_id"] . "' id='seat" . $seat["seat_id"] . "'>";
 
+                        echo "<label for='seat" . $seat["seat_id"] . "'>";
+                        echo $seat["seat_number"];
+                        echo "</label>";
 
+                        echo "</div>";
+                    }
 
-                <div class="seat-row">
-                    <div class="seat">
-                        <input type="checkbox" name="seats[]" value="C1" id="C1">
-                        <label for="C1">C1</label>
-                    </div>
+                    ?>
 
-                    <div class="seat">
-                        <input type="checkbox" name="seats[]" value="C2" id="C2">
-                        <label for="C2">C2</label>
-                    </div>
-
-                    <div class="seat">
-                        <input type="checkbox" name="seats[]" value="C3" id="C3">
-                        <label for="C3">C3</label>
-                    </div>
-
-                    <div class="seat">
-                        <input type="checkbox" name="seats[]" value="C4" id="C4">
-                        <label for="C4">C4</label>
-                    </div>
                 </div>
 
 
