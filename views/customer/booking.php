@@ -61,15 +61,21 @@ if (!$movie) {
 
     <div class="booking-section">
         <div class="movie-details">
-            <img src="../images/<?php echo $image; ?>" alt="<?php echo $title; ?>">
-            <h1><?php echo $title; ?></h1>
-            <p>Ticket: <?php echo $ticket; ?></p>
-            <p>Hall: <?php echo $hall; ?></p>
+            <img src="../images/<?php echo $movie["thumbnail"]; ?>"
+                alt="<?php echo $movie["movie_name"]; ?>">
+
+            <h1>
+                <?php echo $movie["movie_name"]; ?>
+            </h1>
+
+            <p>
+                Duration: <?php echo $movie["movie_duration"]; ?>
+            </p>
         </div>
 
         <div class="booking-options">
             <form action="../../controllers/bookingController.php" method="post">
-                <input type="hidden" name="movie" value="<?php echo $movie; ?>">
+                <input type="hidden" name="movie_id" value="<?php echo $movie["movie_id"]; ?>">
 
                 <h1>Showtime</h1>
                 <div class="showtime-container">
@@ -79,7 +85,7 @@ if (!$movie) {
                     </div>
 
                     <div class="showtime">
-                        <input type="radio" name="showtime" value="8pm-5.30pm" id="show2">
+                        <input type="radio" name="showtime" value="8pm-10.30pm" id="show2">
                         <label for="show2">8 p.m - 10:30 p.m</label>
                     </div>
                 </div>

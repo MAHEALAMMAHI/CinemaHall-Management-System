@@ -34,7 +34,7 @@ function getMoviesByStatus($status)
 
     return $result;
 }
-function getMoviesById($movieId)
+function getMovieById($movieId)
 {
     global $conn;
 
