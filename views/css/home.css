@@ -153,3 +153,13 @@ body{
     margin-left: 15px;
     margin-right: 15px;
 }
+
+.now-showing-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.now-showing-title h1{
+    margin-left: 8px;
+}
