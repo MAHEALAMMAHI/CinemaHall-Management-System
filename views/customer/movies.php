@@ -1,10 +1,15 @@
 <?php
 session_start();
 
+require_once "../../models/movieModel.php";
+
 if (!isset($_SESSION["customer_id"])) {
     header("Location: ../login.php");
     exit();
 }
+
+$nowShowing = getMoviesByStatus("Now Showing");
+$upcoming = getMoviesByStatus("Upcoming");
 ?>
 
 <!DOCTYPE html>
@@ -53,40 +58,27 @@ if (!isset($_SESSION["customer_id"])) {
         </div>
 
         <div class="movie-container">
-
-            <div class="movie">
-                <a href="booking.php?movie=spiderman">
-                    <img src="../images/spiderman.jpeg" alt="Spider-Man">
-                </a>
-            </div>
-
-            <div class="movie">
-                <a href="booking.php?movie=frozen">
-                    <img src="../images/frozen.jpeg" alt="Frozen">
-                </a>
-            </div>
-
-            <div class="movie">
-                <a href="booking.php?movie=batman">
-                    <img src="../images/batman.jpeg" alt="The Batman">
-                </a>
-            </div>
-
+            <?php
+            while ($movie = mysqli_fetch_assoc($nowShowing)) {
+                echo "<div class= 'movie'>";
+                echo "<img src='../images/" . $movie["thumbnail"] . "' alt='" . $movie["movie_name"] . "'>";
+                echo "</div>";
+            }
+            ?>
         </div>
 
         <h1>Upcoming Movies</h1>
         <div class="movie-container">
 
-            <div class="movie">
-                <img src="../images/little-mermaid.jpeg" alt="The Little Mermaid">
-            </div>
+            <div class="movie-container">
+                <?php
+                while ($movie = mysqli_fetch_assoc($upcoming)) {
 
-            <div class="movie">
-                <img src="../images/avengers.jpeg" alt="Avengers">
-            </div>
-
-            <div class="movie">
-                <img src="../images/thor.jpeg" alt="Thor">
+                    echo "<div class='movie'>";
+                    echo "<img src='../images/" . $movie["thumbnail"] . "' alt='" . $movie["movie_name"] . "'>";
+                    echo "</div>";
+                }
+                ?>
             </div>
 
         </div>
