@@ -65,11 +65,11 @@ $customer = getCustomerById($customerId);
 
 
             <label for="password">New Password </label>
-            <input type="password" name="password" id="password"> 
+            <input type="password" name="password" id="password">
 
             <span class="error">
-                <?php 
-                if(isset($_GET["passwordErr"])) {
+                <?php
+                if (isset($_GET["passwordErr"])) {
                     echo $_GET["passwordErr"];
                 }
                 ?>
@@ -77,19 +77,20 @@ $customer = getCustomerById($customerId);
 
 
             <label for="confirmPassword">Confirm Password </label>
-            <input type="password" name="confirmPassword" id="confirmPassword"> 
+            <input type="password" name="confirmPassword" id="confirmPassword">
 
             <span class="error">
-                <?php 
-                if(isset($_GET["confirmPasswordErr"])) {
+                <?php
+                if (isset($_GET["confirmPasswordErr"])) {
                     echo $_GET["confirmPasswordErr"];
                 }
                 ?>
             </span>
 
             <input type="submit" value="Update Profile">
-
-            <a href="profile.php">Cancel</a>
+            <div class="cancel-button">
+                <a href="profile.php">Cancel</a>
+            </div>
         </form>
     </div>
 </body>

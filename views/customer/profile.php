@@ -28,6 +28,11 @@ $edit = $_GET["edit"] ?? "";
 <body>
     <div class="profile-container">
         <h1>User Profile</h1>
+        <?php
+        if (isset($_GET["success"])) {
+            echo "<p class='success'>" . $_GET["success"] . "</p>";
+        }
+        ?>
         <div class="profile-info">
             <p>
                 <b>Name:</b>
@@ -49,16 +54,17 @@ $edit = $_GET["edit"] ?? "";
                 <?php echo $customer["gender"]; ?>
             </p>
         </div>
+        <div class="profile-buttons">
 
-        <a href="updateProfile.php">
-            Update Profile
-        </a>
+            <a href="updateProfile.php">
+                Edit Profile
+            </a>
 
-        <br><br>
+            <a href="home.php">
+                Back Home
+            </a>
 
-        <a href="home.php">
-            Back to Home
-        </a>
+        </div>
     </div>
 
 </body>
