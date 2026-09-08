@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 08, 2026 at 01:36 AM
+-- Generation Time: Sep 09, 2026 at 01:41 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -79,7 +79,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customer_id`, `customer_name`, `customer_email`, `customer_phone`, `gender`, `password`, `staff_id`) VALUES
-(1, 'Mohammed Sadat Ishraq Labib', 'sadatishraq@gmail.com', '01987553016', 'male', '#0227labib#', NULL);
+(1, 'Sadat Ishraq', 'sadatishraq@gmail.com', '01987553016', 'male', '#0227labib#', NULL);
 
 -- --------------------------------------------------------
 
@@ -90,8 +90,15 @@ INSERT INTO `customer` (`customer_id`, `customer_name`, `customer_email`, `custo
 CREATE TABLE `hall` (
   `hall_id` int(11) NOT NULL,
   `hall_name` varchar(50) NOT NULL,
-  `total seats` int(11) NOT NULL
+  `total_seats` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `hall`
+--
+
+INSERT INTO `hall` (`hall_id`, `hall_name`, `total_seats`) VALUES
+(1, 'Hall 1', 16);
 
 -- --------------------------------------------------------
 
@@ -108,6 +115,13 @@ CREATE TABLE `movie` (
   `staff_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `movie`
+--
+
+INSERT INTO `movie` (`movie_id`, `movie_name`, `movie_duration`, `thumbnail`, `movie_status`, `staff_id`) VALUES
+(1, 'Kung Fu Panda 4', '1 hour and 34 minutes', 'kungFuPanda4.jpg', 'Now Showing', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -121,6 +135,14 @@ CREATE TABLE `movie_show` (
   `movie_id` int(11) NOT NULL,
   `hall_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `movie_show`
+--
+
+INSERT INTO `movie_show` (`show_id`, `show_time`, `ticket_price`, `movie_id`, `hall_id`) VALUES
+(1, '3pm-5.30pm', 10.00, 1, 1),
+(2, '8pm-10.30pm', 10.00, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -147,6 +169,28 @@ CREATE TABLE `seat` (
   `seat_number` varchar(10) NOT NULL,
   `hall_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `seat`
+--
+
+INSERT INTO `seat` (`seat_id`, `seat_number`, `hall_id`) VALUES
+(1, 'A1', 1),
+(2, 'A2', 1),
+(3, 'A3', 1),
+(4, 'A4', 1),
+(5, 'B1', 1),
+(6, 'B2', 1),
+(7, 'B3', 1),
+(8, 'B4', 1),
+(9, 'C1', 1),
+(10, 'C2', 1),
+(11, 'C3', 1),
+(12, 'C4', 1),
+(13, 'D1', 1),
+(14, 'D2', 1),
+(15, 'D3', 1),
+(16, 'D4', 1);
 
 -- --------------------------------------------------------
 
@@ -268,19 +312,19 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `hall`
 --
 ALTER TABLE `hall`
-  MODIFY `hall_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `hall_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `movie_show`
 --
 ALTER TABLE `movie_show`
-  MODIFY `show_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `show_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -292,7 +336,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `seat`
 --
 ALTER TABLE `seat`
-  MODIFY `seat_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `seat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `staff`
