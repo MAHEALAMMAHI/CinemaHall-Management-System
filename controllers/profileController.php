@@ -70,8 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     if ($hasError) {
-        $url = "../views/customer/updateProfile.php"
-            . "&nameErr=" . urlencode($nameErr)
+        $url = "../views/customer/updateProfile.php?nameErr=" . urlencode($nameErr)
             . "&emailErr=" . urlencode($emailErr)
             . "&phoneErr=" . urlencode($phoneErr)
             . "&passwordErr=" . urlencode($passwordErr)
@@ -95,4 +94,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Profile update failed";
     }
 }
-?>

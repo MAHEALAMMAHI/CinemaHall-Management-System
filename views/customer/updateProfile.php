@@ -52,7 +52,7 @@ $customer = getCustomerById($customerId);
             </span>
 
 
-            <label for="name">Phone </label>
+            <label for="phone">Phone </label>
             <input type="text" name="phone" id="phone" value="<?php echo $customer["customer_phone"]; ?>">
 
             <span class="error">
