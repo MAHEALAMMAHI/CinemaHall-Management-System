@@ -1,5 +1,12 @@
 <?php
+
 session_start();
+
+require_once "../../models/showtimeModel.php";
+require_once "../../models/movieModel.php";
+
+$showtimes = getAllShowtimes();
+
 ?>
 
 <!DOCTYPE html>
@@ -8,13 +15,16 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Movies - CineVerse</title>
 
-    <link rel="stylesheet" href="../css/add_movie.css?v=3">
+    <title>Manage Showtimes - CineVerse</title>
+
+    <link rel="stylesheet" href="../css/add_movie.css?v=5">
 </head>
 
 <body>
+
     <div class="navbar">
+
         <div class="logo">
             CineVerse
         </div>
@@ -36,6 +46,7 @@ session_start();
         </div>
 
         <div class="user">
+
             Staff
 
             <span class="separator">||</span>
@@ -43,49 +54,49 @@ session_start();
             <a href="../logout.php">
                 Logout
             </a>
+
         </div>
+
     </div>
+
 
     <div class="main-content">
+
         <div class="movie-form-container">
-            <h1>Add Movie</h1>
+
+            <h1>Manage Showtimes</h1>
+
             <?php
-            if (isset($_GET["success"])) {
-                echo "<p class='success'>" . $_GET["success"] . "</p>";
+
+            while ($show = mysqli_fetch_assoc($showtimes)) {
+
+                $movie = getMovieById($show["movie_id"]);
+
+                echo "<p>";
+
+                echo $movie["movie_name"];
+
+                echo " | ";
+
+                echo $show["show_date"];
+
+                echo " | ";
+
+                echo $show["show_time"];
+
+                echo " | $";
+
+                echo $show["ticket_price"];
+
+                echo "</p>";
             }
+
             ?>
-            <form action="../../controllers/movieController.php" method="post" enctype="multipart/form-data">
 
-                <label for="movieName">Movie Name</label>
-                <input type="text" name="movieName" id="movieName">
-
-                <label for="duration">Duration</label>
-                <input type="text" name="duration" id="duration" placeholder="Example: 2 hours 30 minutes">
-
-                <label for="status">Movie Status</label>
-
-                <select name="status" id="status">
-                    <option value="">
-                        Select Status
-                    </option>
-
-                    <option value="Now Showing">
-                        Now Showing
-                    </option>
-
-                    <option value="Upcoming">
-                        Upcoming
-                    </option>
-
-                </select>
-
-                <label for="thumbnail">Thumbnail</label>
-                <input type="file" name="thumbnail" id="thumbnail">
-
-                <input type="submit" value="Add Movie">
-            </form>
         </div>
+
     </div>
+
 
     <div class="footer">
 
@@ -101,6 +112,7 @@ session_start();
 
         </div>
 
+
         <div class="footer-right">
 
             <h1>Contact</h1>
@@ -112,6 +124,7 @@ session_start();
         </div>
 
     </div>
+
 </body>
 
 </html>

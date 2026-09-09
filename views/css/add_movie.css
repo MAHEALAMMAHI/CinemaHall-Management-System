@@ -107,6 +107,8 @@ body{
 }
 
 .movie-form-container input[type="text"],
+.movie-form-container input[type="date"],
+.movie-form-container input[type="number"],
 .movie-form-container select{
     width: 95%;
     padding: 10px;
