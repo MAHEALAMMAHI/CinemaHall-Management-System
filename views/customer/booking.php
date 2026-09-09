@@ -33,11 +33,15 @@ if ($selectedShowId != "") {
 
     $selectedShow = getShowById($selectedShowId);
 
-    if ($selectedShow) {
+    if ($selectedShow && $selectedShow["movie_id"] == $movieId) {
 
         $hallId = $selectedShow["hall_id"];
 
         $seats = getSeatsByHallId($hallId);
+
+    } else {
+
+        $selectedShow = false;
     }
 }
 
