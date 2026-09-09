@@ -39,8 +39,12 @@ $showtimes = getAllShowtimes();
                 Add Showtime
             </a>
 
+            <a href="manage_movie.php">
+                Delete Movies
+            </a>
+
             <a href="manage_showtime.php">
-                Manage Showtime
+                Delete Showtime
             </a>
 
         </div>

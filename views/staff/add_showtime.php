@@ -24,6 +24,7 @@ $halls = getAllHalls();
         </div>
 
         <div class="nav-links">
+
             <a href="add_movie.php">
                 Add Movie
             </a>
@@ -32,9 +33,14 @@ $halls = getAllHalls();
                 Add Showtime
             </a>
 
-            <a href="manage_showtime.php">
-                Manage Showtime
+            <a href="manage_movie.php">
+                Delete Movies
             </a>
+
+            <a href="manage_showtime.php">
+                Delete Showtime
+            </a>
+
         </div>
 
         <div class="user">
@@ -94,7 +100,7 @@ $halls = getAllHalls();
                 <label for="end_time">
                     End Time
                 </label>
-                
+
                 <input type="time" name="end_time" id="end_time">
 
                 <label for="ticket_price">

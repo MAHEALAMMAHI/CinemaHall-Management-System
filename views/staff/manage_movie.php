@@ -1,5 +1,11 @@
 <?php
+
 session_start();
+
+require_once "../../models/movieModel.php";
+
+$movies = getAllMoviesForStaff();
+
 ?>
 
 <!DOCTYPE html>
@@ -8,13 +14,16 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Movies - CineVerse</title>
 
-    <link rel="stylesheet" href="../css/add_movie.css?v=3">
+    <title>Manage Movies - CineVerse</title>
+
+    <link rel="stylesheet" href="../css/add_movie.css?v=7">
 </head>
 
 <body>
+
     <div class="navbar">
+
         <div class="logo">
             CineVerse
         </div>
@@ -38,7 +47,9 @@ session_start();
             </a>
 
         </div>
+
         <div class="user">
+
             Staff
 
             <span class="separator">||</span>
@@ -46,49 +57,63 @@ session_start();
             <a href="../logout.php">
                 Logout
             </a>
+
         </div>
+
     </div>
 
-    <div class="main-content">
+
+    <div class="main-content manage-content">
+
         <div class="movie-form-container">
-            <h1>Add Movie</h1>
+
+            <h1>Manage Movies</h1>
+
             <?php
+
             if (isset($_GET["success"])) {
                 echo "<p class='success'>" . $_GET["success"] . "</p>";
             }
+
+            if (isset($_GET["error"])) {
+                echo "<p class='error'>" . $_GET["error"] . "</p>";
+            }
+
             ?>
-            <form action="../../controllers/movieController.php" method="post" enctype="multipart/form-data">
 
-                <label for="movieName">Movie Name</label>
-                <input type="text" name="movieName" id="movieName">
+            <?php
 
-                <label for="duration">Duration</label>
-                <input type="text" name="duration" id="duration" placeholder="Example: 2 hours 30 minutes">
+            while ($movie = mysqli_fetch_assoc($movies)) {
 
-                <label for="status">Movie Status</label>
+                echo "<p>";
 
-                <select name="status" id="status">
-                    <option value="">
-                        Select Status
-                    </option>
+                echo $movie["movie_name"];
 
-                    <option value="Now Showing">
-                        Now Showing
-                    </option>
+                echo " | ";
 
-                    <option value="Upcoming">
-                        Upcoming
-                    </option>
+                echo $movie["movie_duration"];
 
-                </select>
+                echo " | ";
 
-                <label for="thumbnail">Thumbnail</label>
-                <input type="file" name="thumbnail" id="thumbnail">
+                echo $movie["movie_status"];
 
-                <input type="submit" value="Add Movie">
-            </form>
+                echo "</p>";
+
+                echo "<form action='../../controllers/movieController.php' method='post'>";
+
+                echo "<input type='hidden' name='movie_id' value='" . $movie["movie_id"] . "'>";
+
+                echo "<input type='submit' name='delete_movie' value='Delete'>";
+
+                echo "</form>";
+            }
+
+            ?>
+
         </div>
+
     </div>
+
 
     <div class="footer">
 
@@ -104,6 +129,7 @@ session_start();
 
         </div>
 
+
         <div class="footer-right">
 
             <h1>Contact</h1>
@@ -115,6 +141,7 @@ session_start();
         </div>
 
     </div>
+
 </body>
 
 </html>
