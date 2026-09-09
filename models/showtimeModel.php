@@ -31,15 +31,17 @@ function getAllHalls()
     return $result;
 }
 
-function addShowTime($showDate, $showTime, $ticketPrice, $movieId, $hallId)
+function addShowtime($showDate, $showTime, $showEndDatetime, $ticketPrice, $movieId, $hallId)
 {
     global $conn;
 
-    $sql = "INSERT INTO movie_show(show_date, show_time, ticket_price, movie_id, hall_id) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO movie_show
+            (show_date, show_time, show_end_datetime, ticket_price, movie_id, hall_id)
+            VALUES (?, ?, ?, ?, ?, ?)";
 
     $stmt = mysqli_prepare($conn, $sql);
 
-    mysqli_stmt_bind_param($stmt, "ssdii", $showDate, $showTime, $ticketPrice, $movieId, $hallId);
+    mysqli_stmt_bind_param($stmt, "sssdii", $showDate, $showTime, $showEndDatetime, $ticketPrice, $movieId, $hallId);
 
     if (mysqli_stmt_execute($stmt)) {
         return true;
@@ -100,4 +102,3 @@ function getAllShowtimes()
 
     return $result;
 }
-?>

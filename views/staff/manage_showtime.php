@@ -16,9 +16,9 @@ $showtimes = getAllShowtimes();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Manage Showtimes - CineVerse</title>
+    <title>Manage Showtime - CineVerse</title>
 
-    <link rel="stylesheet" href="../css/add_movie.css?v=5">
+    <link rel="stylesheet" href="../css/add_movie.css?v=6">
 </head>
 
 <body>
@@ -60,14 +60,24 @@ $showtimes = getAllShowtimes();
     </div>
 
 
-    <div class="main-content">
+    <div class="main-content manage-content">
 
         <div class="movie-form-container">
 
             <h1>Manage Showtimes</h1>
-
             <?php
 
+            if (isset($_GET["success"])) {
+                echo "<p class='success'>" . $_GET["success"] . "</p>";
+            }
+
+            if (isset($_GET["error"])) {
+                echo "<p class='error'>" . $_GET["error"] . "</p>";
+            }
+
+            ?>
+
+            <?php
             while ($show = mysqli_fetch_assoc($showtimes)) {
 
                 $movie = getMovieById($show["movie_id"]);
@@ -89,8 +99,15 @@ $showtimes = getAllShowtimes();
                 echo $show["ticket_price"];
 
                 echo "</p>";
-            }
 
+                echo "<form action='../../controllers/showtimeController.php' method='post'>";
+
+                echo "<input type='hidden' name='show_id' value='" . $show["show_id"] . "'>";
+
+                echo "<input type='submit' name='delete_showtime' value='Delete'>";
+
+                echo "</form>";
+            }
             ?>
 
         </div>

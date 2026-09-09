@@ -85,10 +85,17 @@ $halls = getAllHalls();
                 </label>
                 <input type="date" name="show_date" id="show_date">
 
-                <label for="show_time">
-                    Showtime
+                <label for="start_time">
+                    Start Time
                 </label>
-                <input type="text" name="show_time" id="show_time" placeholder="Example: 3pm-5.30pm">
+
+                <input type="time" name="start_time" id="start_time">
+
+                <label for="end_time">
+                    End Time
+                </label>
+                
+                <input type="time" name="end_time" id="end_time">
 
                 <label for="ticket_price">
                     Ticket Price

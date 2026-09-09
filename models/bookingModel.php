@@ -5,7 +5,8 @@ function getShowsByMovieId($movieId)
 {
     global $conn;
 
-    $sql = "SELECT * FROM movie_show WHERE movie_id = ?";
+    $sql = "SELECT * FROM movie_show WHERE movie_id = ?
+    AND show_end_datetime >= CURRENT_TIMESTAMP";
 
     $stmt = mysqli_prepare($conn, $sql);
 

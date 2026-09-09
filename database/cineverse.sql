@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2026 at 02:44 AM
+-- Generation Time: Sep 09, 2026 at 04:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -135,7 +135,10 @@ CREATE TABLE `movie` (
 --
 
 INSERT INTO `movie` (`movie_id`, `movie_name`, `movie_duration`, `thumbnail`, `movie_status`, `staff_id`) VALUES
-(1, 'Kung Fu Panda 4', '1 hour and 34 minutes', 'kungFuPanda4.jpg', 'Now Showing', NULL);
+(1, 'Kung Fu Panda 4', '1 hour and 34 minutes', 'kungFuPanda4.jpg', 'Now Showing', NULL),
+(2, 'Spider-Man: No Way Home', '2 hours 28 minutes', 'spiderman.jpeg', 'Now Showing', NULL),
+(3, 'The Batman', '2 hours 56 minutes', 'batman.jpeg', 'Now Showing', NULL),
+(4, 'The Batman', '2 hours 56 minutes', 'batman.jpeg', 'Now Showing', NULL);
 
 -- --------------------------------------------------------
 
@@ -147,6 +150,7 @@ CREATE TABLE `movie_show` (
   `show_id` int(11) NOT NULL,
   `show_date` date NOT NULL,
   `show_time` varchar(50) NOT NULL,
+  `show_end_datetime` datetime DEFAULT NULL,
   `ticket_price` decimal(10,2) NOT NULL,
   `movie_id` int(11) NOT NULL,
   `hall_id` int(11) NOT NULL
@@ -156,9 +160,8 @@ CREATE TABLE `movie_show` (
 -- Dumping data for table `movie_show`
 --
 
-INSERT INTO `movie_show` (`show_id`, `show_date`, `show_time`, `ticket_price`, `movie_id`, `hall_id`) VALUES
-(1, '2026-09-09', '3pm-5.30pm', 10.00, 1, 1),
-(2, '2026-09-09', '8pm-10.30pm', 10.00, 1, 1);
+INSERT INTO `movie_show` (`show_id`, `show_date`, `show_time`, `show_end_datetime`, `ticket_price`, `movie_id`, `hall_id`) VALUES
+(1, '2026-09-09', '3pm-5.30pm', '2026-09-09 17:30:00', 10.00, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -171,7 +174,7 @@ CREATE TABLE `payment` (
   `booking_id` int(11) NOT NULL,
   `payment_method` varchar(50) NOT NULL,
   `amount` decimal(10,2) NOT NULL,
-  `payment_date` datetime NOT NULL
+  `payment_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -334,13 +337,13 @@ ALTER TABLE `hall`
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `movie_show`
 --
 ALTER TABLE `movie_show`
-  MODIFY `show_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `show_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `payment`

@@ -179,3 +179,14 @@ body{
     font-size: 14px;
     margin-bottom: 20px;
 }
+
+.error{
+    color: red;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.manage-content{
+    min-height: 520px;
+}

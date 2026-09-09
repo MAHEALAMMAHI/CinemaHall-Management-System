@@ -1,44 +1,99 @@
 <?php
+
 require_once "../models/showtimeModel.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $movieId = $_POST["movie_id"] ?? "";
-    $showDate = $_POST["show_date"] ?? "";
-    $showTime = $_POST["show_time"] ?? "";
-    $ticketPrice = $_POST["ticket_price"] ?? "";
-    $hallId = $_POST["hall_id"] ?? "";
 
-    $hasError = false;
+    if (isset($_POST["delete_showtime"])) {
 
-    if ($movieId == "") {
-        $hasError = true;
-    }
+        $showId = $_POST["show_id"] ?? "";
 
-    if ($showDate == "") {
-        $hasError = true;
-    }
-
-    if ($showTime == "") {
-        $hasError = true;
-    }
-
-    if ($ticketPrice == "") {
-        $hasError = true;
-    }
-
-    if ($hallId == "") {
-        $hasError = true;
-    }
-
-    if ($hasError) {
-        echo "Please fill all fields correctly";
-    } else {
-        if (addShowTime($showDate, $showTime, $ticketPrice, $movieId, $hallId)) {
-            header("Location: ../views/staff/add_showtime.php?success=Showtime added successfully");
+        if ($showId == "") {
+            echo "Invalid showtime";
             exit();
+        }
+
+        if (hasBookingForShow($showId)) {
+
+            header("Location: ../views/staff/manage_showtime.php?error=Cannot delete this showtime because customers have booked seats");
+            exit();
+
         } else {
-            echo "Show time could not be added";
+
+            if (deleteShowtime($showId)) {
+
+                header("Location: ../views/staff/manage_showtime.php?success=Showtime deleted successfully");
+                exit();
+
+            } else {
+
+                echo "Showtime could not be deleted";
+            }
+        }
+
+    } else {
+
+        $movieId = $_POST["movie_id"] ?? "";
+        $showDate = $_POST["show_date"] ?? "";
+        $startTime = $_POST["start_time"] ?? "";
+        $endTime = $_POST["end_time"] ?? "";
+        $ticketPrice = $_POST["ticket_price"] ?? "";
+        $hallId = $_POST["hall_id"] ?? "";
+
+        $hasError = false;
+
+        if ($movieId == "") {
+            $hasError = true;
+        }
+
+        if ($showDate == "") {
+            $hasError = true;
+        }
+
+        if ($startTime == "") {
+            $hasError = true;
+        }
+
+        if ($endTime == "") {
+            $hasError = true;
+        }
+
+        if ($ticketPrice == "") {
+            $hasError = true;
+        }
+
+        if ($hallId == "") {
+            $hasError = true;
+        }
+
+        if ($hasError) {
+
+            echo "Please fill all fields correctly";
+
+        } else {
+
+            $showTime = $startTime . "-" . $endTime;
+
+            $showEndDatetime = $showDate . " " . $endTime . ":00";
+
+            if (addShowtime(
+                $showDate,
+                $showTime,
+                $showEndDatetime,
+                $ticketPrice,
+                $movieId,
+                $hallId
+            )) {
+
+                header("Location: ../views/staff/add_showtime.php?success=Showtime added successfully");
+                exit();
+
+            } else {
+
+                echo "Showtime could not be added";
+            }
         }
     }
 }
+
 ?>
