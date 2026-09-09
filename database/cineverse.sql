@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2026 at 01:41 AM
+-- Generation Time: Sep 09, 2026 at 02:44 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,10 +42,17 @@ CREATE TABLE `admin` (
 
 CREATE TABLE `booking` (
   `booking_id` int(11) NOT NULL,
-  `booking_date` datetime NOT NULL,
+  `booking_date` datetime NOT NULL DEFAULT current_timestamp(),
   `customer_id` int(11) NOT NULL,
   `show_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`booking_id`, `booking_date`, `customer_id`, `show_id`) VALUES
+(1, '2026-09-09 06:12:53', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -57,6 +64,14 @@ CREATE TABLE `booking_seat` (
   `booking_id` int(11) NOT NULL,
   `seat_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `booking_seat`
+--
+
+INSERT INTO `booking_seat` (`booking_id`, `seat_id`) VALUES
+(1, 1),
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -130,6 +145,7 @@ INSERT INTO `movie` (`movie_id`, `movie_name`, `movie_duration`, `thumbnail`, `m
 
 CREATE TABLE `movie_show` (
   `show_id` int(11) NOT NULL,
+  `show_date` date NOT NULL,
   `show_time` varchar(50) NOT NULL,
   `ticket_price` decimal(10,2) NOT NULL,
   `movie_id` int(11) NOT NULL,
@@ -140,9 +156,9 @@ CREATE TABLE `movie_show` (
 -- Dumping data for table `movie_show`
 --
 
-INSERT INTO `movie_show` (`show_id`, `show_time`, `ticket_price`, `movie_id`, `hall_id`) VALUES
-(1, '3pm-5.30pm', 10.00, 1, 1),
-(2, '8pm-10.30pm', 10.00, 1, 1);
+INSERT INTO `movie_show` (`show_id`, `show_date`, `show_time`, `ticket_price`, `movie_id`, `hall_id`) VALUES
+(1, '2026-09-09', '3pm-5.30pm', 10.00, 1, 1),
+(2, '2026-09-09', '8pm-10.30pm', 10.00, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -300,7 +316,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `customer`
