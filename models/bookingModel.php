@@ -124,3 +124,24 @@ function isSeatBooked($showId, $seatId)
 
     return false;
 }
+
+function getShowById($showId)
+{
+    global $conn;
+
+    $sql = "SELECT * FROM movie_show WHERE show_id = ?";
+
+    $stmt = mysqli_prepare($conn, $sql);
+
+    mysqli_stmt_bind_param($stmt, "i", $showId);
+
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+
+    if (mysqli_num_rows($result) == 1) {
+        return mysqli_fetch_assoc($result);
+    } else {
+        return false;
+    }
+}

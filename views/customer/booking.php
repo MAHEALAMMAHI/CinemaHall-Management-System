@@ -23,7 +23,23 @@ if (!$movie) {
     exit();
 }
 $shows = getShowsByMovieId($movieId);
-$seats = getSeatsByHallId(1);
+
+$selectedShowId = $_GET["show_id"] ?? "";
+
+$selectedShow = false;
+$seats = false;
+
+if ($selectedShowId != "") {
+
+    $selectedShow = getShowById($selectedShowId);
+
+    if ($selectedShow) {
+
+        $hallId = $selectedShow["hall_id"];
+
+        $seats = getSeatsByHallId($hallId);
+    }
+}
 
 
 ?>
@@ -79,13 +95,17 @@ $seats = getSeatsByHallId(1);
         </div>
 
         <div class="booking-options">
-            <form action="../../controllers/bookingController.php" method="post">
-                <input type="hidden" name="movie_id" value="<?php echo $movie["movie_id"]; ?>">
+            <h1>Showtime</h1>
 
-                <h1>Showtime</h1>
+            <form action="booking.php" method="get">
+
+                <input type="hidden" name="movie_id"
+                    value="<?php echo $movie["movie_id"]; ?>">
+
                 <div class="showtime-container">
 
                     <?php
+
                     while ($show = mysqli_fetch_assoc($shows)) {
 
                         echo "<div class='showtime'>";
@@ -93,41 +113,78 @@ $seats = getSeatsByHallId(1);
                         echo "<input type='radio' name='show_id' value='" . $show["show_id"] . "'>";
 
                         echo "<label>";
+                        echo $show["show_date"] . " | ";
                         echo $show["show_time"] . " - $" . $show["ticket_price"];
                         echo "</label>";
 
                         echo "</div>";
                     }
+
                     ?>
 
                 </div>
+
+                <input type="submit" value="Select Showtime">
+
+            </form>
+
+            <?php
+
+            if ($selectedShow) {
+
+            ?>
 
                 <h1>Seat</h1>
 
-                <div class="seat-row">
+                <form action="../../controllers/bookingController.php" method="post">
 
-                    <?php
+                    <input type="hidden" name="movie_id"
+                        value="<?php echo $movie["movie_id"]; ?>">
 
-                    while ($seat = mysqli_fetch_assoc($seats)) {
+                    <input type="hidden" name="show_id"
+                        value="<?php echo $selectedShow["show_id"]; ?>">
 
-                        echo "<div class='seat'>";
+                    <div class="seat-row">
 
-                        echo "<input type='checkbox' name='seats[]' value='" . $seat["seat_id"] . "' id='seat" . $seat["seat_id"] . "'>";
+                        <?php
 
-                        echo "<label for='seat" . $seat["seat_id"] . "'>";
-                        echo $seat["seat_number"];
-                        echo "</label>";
+                        while ($seat = mysqli_fetch_assoc($seats)) {
 
-                        echo "</div>";
-                    }
+                            echo "<div class='seat'>";
 
-                    ?>
+                            if (isSeatBooked($selectedShowId, $seat["seat_id"])) {
 
-                </div>
+                                echo "<input type='checkbox' disabled>";
 
+                                echo "<label>";
+                                echo $seat["seat_number"];
+                                echo "<br>Booked";
+                                echo "</label>";
+                            } else {
 
-                <input type="submit" name="confirm" value="Confirm">
-            </form>
+                                echo "<input type='checkbox' name='seats[]' value='" . $seat["seat_id"] . "'>";
+
+                                echo "<label>";
+                                echo $seat["seat_number"];
+                                echo "</label>";
+                            }
+
+                            echo "</div>";
+                        }
+
+                        ?>
+
+                    </div>
+
+                    <input type="submit" name="confirm" value="Confirm">
+
+                </form>
+
+            <?php
+
+            }
+
+            ?>
         </div>
     </div>
 
