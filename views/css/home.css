@@ -49,16 +49,16 @@ body{
     font-size: 18px;
 }
 
-.profile-icon{
-    width: 30px;
-    height: 30px;
-
-    border: 2px solid white;
-    border-radius: 50%;
-
-    margin-left: 30px;
-
+.user a{
+    color:white;
+    text-decoration: none;
+    font-size: 18px;
 }
+
+.user a:hover{
+    color: #e50914;
+}
+
 
 /*movies*/
 
@@ -146,4 +146,20 @@ body{
 
     border-radius: 50%;
     margin-right: 8px;
+}
+
+.separator{
+    color: white;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.now-showing-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.now-showing-title h1{
+    margin-left: 8px;
 }

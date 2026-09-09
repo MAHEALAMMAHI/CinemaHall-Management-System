@@ -1,11 +1,19 @@
 <?php
+session_start();
+
 require_once "../models/customerModel.php";
 
+if (!isset($_SESSION["customer_id"])) {
+    header("Location: ../views/login.php");
+    exit();
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $customerId = $_SESSION["customer_id"];
+
     $name = trim($_POST["name"]);
     $email = trim($_POST["email"]);
     $phone = trim($_POST["phone"]);
-    $gender = $_POST["gender"] ?? "";
     $password = $_POST["password"];
     $confirmPassword = $_POST["confirmPassword"];
 
@@ -14,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nameErr = "";
     $emailErr = "";
     $phoneErr = "";
-    $genderErr = "";
     $passwordErr = "";
     $confirmPasswordErr = "";
 
@@ -35,58 +42,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($phone == "") {
-        $phoneErr = "Phone number cannot be empty";
+        $phoneErr = "Phone cannot be empty";
         $hasError = true;
     } elseif (!preg_match('/^01[0-9]{9}$/', $phone)) {
         $phoneErr = "Provide a valid phone number";
         $hasError = true;
     }
 
-    if ($gender == "") {
-        $genderErr = "Gender must be selected";
-        $hasError = true;
+    if ($password != "") {
+        if (strlen($password) < 8) {
+            $passwordErr = "Password must be at least 8 characters";
+            $hasError = true;
+        }
+        if ($confirmPassword == "") {
+            $confirmPasswordErr = "Confirm password cannot be empty";
+            $hasError = true;
+        } elseif ($password != $confirmPassword) {
+            $confirmPasswordErr = "Passwords do not match";
+            $hasError = true;
+        }
     }
 
-    if ($password == "") {
-        $passwordErr = "Password cannot be empty";
-        $hasError = true;
-    } elseif (strlen($password) < 8) {
-        $passwordErr = "Password must be at least 8 characters";
-        $hasError = true;
+    if (!$hasError) {
+        if (emailExistsForOtherCustomer($email, $customerId)) {
+            $emailErr = "This email is already registered";
+            $hasError = true;
+        }
     }
-    if ($confirmPassword == "") {
-        $confirmPasswordErr = "Confirm password cannot be empty";
-        $hasError = true;
-    } else if ($password != $confirmPassword) {
-        $confirmPasswordErr = "Passwords do not match";
-        $hasError = true;
-    }
-
     if ($hasError) {
-        $url = "../views/register.php?nameErr=" . urlencode($nameErr)
+        $url = "../views/customer/updateProfile.php?nameErr=" . urlencode($nameErr)
             . "&emailErr=" . urlencode($emailErr)
             . "&phoneErr=" . urlencode($phoneErr)
-            . "&genderErr=" . urlencode($genderErr)
             . "&passwordErr=" . urlencode($passwordErr)
             . "&confirmPasswordErr=" . urlencode($confirmPasswordErr);
 
         header("Location: $url");
         exit();
-    } else {
-        $result = registerCustomer(
-            $name,
-            $email,
-            $phone,
-            $gender,
-            $password,
-        );
+    }
 
-        if ($result) {
-            header("Location: ../views/login.php");
-            exit();
-        } else {
-            echo "Registration failed";
-        }
+    $customer = getCustomerById($customerId);
+    if ($password == "") {
+        $password = $customer["password"];
+    }
+
+    if (updateCustomer($customerId, $name, $email, $phone, $password)) {
+        $_SESSION["customer_name"] = $name;
+        $_SESSION["customer_email"] = $email;
+        header("Location: ../views/customer/profile.php?success=Profile updated successfully");
+        exit();
+    } else {
+        echo "Profile update failed";
     }
 }
-?>
