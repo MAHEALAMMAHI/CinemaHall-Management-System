@@ -16,7 +16,7 @@ $showtimes = getAllShowtimes();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Manage Showtime - CineVerse</title>
+    <title>Delete Showtimes - CineVerse</title>
 
     <link rel="stylesheet" href="../css/add_movie.css?v=6">
 </head>
@@ -68,7 +68,7 @@ $showtimes = getAllShowtimes();
 
         <div class="movie-form-container">
 
-            <h1>Manage Showtimes</h1>
+            <h1>Delete Showtimes</h1>
             <?php
 
             if (isset($_GET["success"])) {

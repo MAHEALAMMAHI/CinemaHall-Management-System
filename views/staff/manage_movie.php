@@ -15,7 +15,7 @@ $movies = getAllMoviesForStaff();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Manage Movies - CineVerse</title>
+    <title>Delete Movies - CineVerse</title>
 
     <link rel="stylesheet" href="../css/add_movie.css?v=7">
 </head>
@@ -67,7 +67,7 @@ $movies = getAllMoviesForStaff();
 
         <div class="movie-form-container">
 
-            <h1>Manage Movies</h1>
+            <h1>Delete Movies</h1>
 
             <?php
 
